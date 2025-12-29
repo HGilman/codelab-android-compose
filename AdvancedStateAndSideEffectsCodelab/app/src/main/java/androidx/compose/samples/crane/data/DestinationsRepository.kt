@@ -16,6 +16,7 @@
 
 package androidx.compose.samples.crane.data
 
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class DestinationsRepository @Inject constructor(
@@ -25,7 +26,8 @@ class DestinationsRepository @Inject constructor(
     val hotels: List<ExploreModel> = destinationsLocalDataSource.craneHotels
     val restaurants: List<ExploreModel> = destinationsLocalDataSource.craneRestaurants
 
-    fun getDestination(cityName: String): ExploreModel? {
+    suspend fun getDestination(cityName: String): ExploreModel? {
+        delay(1000)
         return destinationsLocalDataSource.craneDestinations.firstOrNull {
             it.city.name == cityName
         }
